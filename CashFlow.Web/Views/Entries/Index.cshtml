@@ -1,0 +1,36 @@
+﻿@model IEnumerable<CashFlow.Web.Models.EntryViewModel>
+
+@{
+    ViewData["Title"] = "Entries";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Date</th>
+            <th>Amount</th>
+            <th>Type</th>
+            <th>Description</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var entry in Model)
+        {
+            <tr>
+                <td>@entry.Date.ToShortDateString()</td>
+                <td>@entry.Amount</td>
+                <td>@entry.Type</td>
+                <td>@entry.Description</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@entry.Id" class="btn btn-primary">Edit</a>
+                    <a asp-action="Delete" asp-route-id="@entry.Id" class="btn btn-danger">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a asp-action="Create" class="btn btn-success">Add Entry</a>
