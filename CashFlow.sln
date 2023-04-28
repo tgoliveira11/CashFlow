@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CashFlow.Infrastructure.Dat
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CashFlow.Intrastructure.Services", "CashFlow.Intrastructure.Services\CashFlow.Intrastructure.Services.csproj", "{CBE74293-F888-476E-889A-2E0899538751}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CashFlow.Tests", "CashFlow.Tests\CashFlow.Tests.csproj", "{47863216-ECB9-4C3A-8762-C2F2E70B4FB2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{CBE74293-F888-476E-889A-2E0899538751}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CBE74293-F888-476E-889A-2E0899538751}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CBE74293-F888-476E-889A-2E0899538751}.Release|Any CPU.Build.0 = Release|Any CPU
+		{47863216-ECB9-4C3A-8762-C2F2E70B4FB2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{47863216-ECB9-4C3A-8762-C2F2E70B4FB2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{47863216-ECB9-4C3A-8762-C2F2E70B4FB2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{47863216-ECB9-4C3A-8762-C2F2E70B4FB2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

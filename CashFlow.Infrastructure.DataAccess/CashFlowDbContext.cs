@@ -10,7 +10,7 @@ namespace CashFlow.Infrastructure.DataAccess
 {
     public class CashFlowDbContext : DbContext
     {
-        public DbSet<Entry> Entries { get; set; }
+        public virtual DbSet<Entry> Entries { get; set; }
 
         public CashFlowDbContext(DbContextOptions<CashFlowDbContext> options) : base(options)
         {
