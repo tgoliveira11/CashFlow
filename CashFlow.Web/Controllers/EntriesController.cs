@@ -91,6 +91,13 @@ namespace CashFlow.Web.Controllers
             await _cashFlowApiService.DeleteEntryAsync(id);
             return RedirectToAction(nameof(Index));
         }
+
+        // GET: Report
+        public async Task<IActionResult> Report()
+        {
+            var report = await _cashFlowApiService.GetDailyBalanceReportAsync(DateTime.Now);
+            return View(report);
+        }
     }
 
 }

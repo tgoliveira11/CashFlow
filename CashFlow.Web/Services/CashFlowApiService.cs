@@ -53,12 +53,17 @@ namespace CashFlow.Web.Services
             response.EnsureSuccessStatusCode();
         }
 
-        public async Task<decimal> GetDailyBalanceAsync(DateTime date)
+        public async Task<ReportViewModel> GetDailyBalanceReportAsync(DateTime date)
+        
         {
-            var response = await _httpClient.GetAsync($"api/report/daily-balance?date={date:yyyy-MM-dd}");
+            var response = await _httpClient.GetAsync($"api/reports/dailybalance?date={date:yyyy-MM-dd}");
             response.EnsureSuccessStatusCode();
+
             var content = await response.Content.ReadAsStringAsync();
-            return JsonConvert.DeserializeObject<decimal>(content);
+            var report = JsonConvert.DeserializeObject<ReportViewModel>(content);
+
+            return report;
         }
+
     }
 }

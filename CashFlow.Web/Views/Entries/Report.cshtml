@@ -1,0 +1,36 @@
+﻿@model CashFlow.Web.Models.ReportViewModel
+
+@{
+    ViewData["Title"] = "Report";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<p>
+    Start Date: @Model.StartDate.ToShortDateString() <br>
+    End Date: @Model.EndDate.ToShortDateString()
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Date</th>
+            <th>Total Debits</th>
+            <th>Total Credits</th>
+            <th>Net Balance</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.DailyBalances)
+        {
+            <tr>
+                <td>@item.Date.ToShortDateString()</td>
+                <td>@item.TotalDebits.ToString("C")</td>
+                <td>@item.TotalCredits.ToString("C")</td>
+                <td>@item.NetBalance.ToString("C")</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a asp-action="Index" class="btn btn-primary">Back to Entries</a>

@@ -21,6 +21,9 @@ namespace CashFlow.Intrastructure.Services
 
         public async Task<Report> GenerateDailyBalanceReportAsync(DateTime startDate, DateTime endDate)
         {
+            if (startDate.Equals(DateTime.MinValue)) startDate = DateTime.Now;
+            if (endDate.Equals(DateTime.MinValue)) endDate = DateTime.Now;
+
             var entries = await _entryRepository.GetAllEntriesAsync();
             var dailyBalances = new List<DailyBalance>();
 
