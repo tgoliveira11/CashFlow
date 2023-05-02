@@ -1,11 +1,10 @@
 ﻿# CashFlow
 
-
 A merchant needs to control their daily cash flow with entries (debits and credits) and also requires a report that provides the daily consolidated balance.
 
 CashFlow/
 │
-├── Domain/
+├── Domain/ (CashFlow.Domain)
 │   ├── Entities/
 │   │   ├── Entry.cs
 │   │   ├── DailyBalance.cs
@@ -17,17 +16,23 @@ CashFlow/
 │   └── Services/
 │       └── IReportService.cs
 │
-├── Infrastructure/
-│   ├── Data/
+├── Infrastructure/ (CashFlow.Infrastructure.DataAccess
+│   ├── /
 │   │   └── CashFlowDbContext.cs
 │   │
 │   ├── Repositories/
 │   │   └── EntryRepository.cs
 │   │
-│   └── Services/
+│   └── Migrations/
 │       └── ReportService.cs
 │
-└── Presentation/
+├── Services/ (CashFlow.Infrastructure.Services
+│   ├── /
+│       └── ... (Controllers)
+│
+├── APIs/ (CashFlow.Api)
+│
+└── Presentation/ (CashFlow.Web)
     └── ... (Controllers, Views, etc.)
 
 
@@ -41,3 +46,5 @@ Clients can interact with the API using the following endpoints:
 **GET /api/reports/dailyBalance?startDate={startDate}&endDate={endDate}**: Get a daily balance report for the specified date range
 
 These endpoints should provide the necessary functionality to accomplish the project requirements.
+ 
+To install it, create a database on a SQL Server and ajust the entry on the section ConnectionStrings of appsettings.json file.
