@@ -48,3 +48,7 @@ Clients can interact with the API using the following endpoints:
 These endpoints should provide the necessary functionality to accomplish the project requirements.
  
 To install it, create a database on a SQL Server and ajust the entry on the section ConnectionStrings of appsettings.json file.
+
+![Swagger](/img/Swagger.png "Swagger")
+![Entries](/img/Entries-Web.png "Entries")
+![Report](/img/Report-Web.png "Report")
