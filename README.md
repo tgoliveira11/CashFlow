@@ -51,4 +51,4 @@ To install it, create a database on a SQL Server and ajust the entry on the sect
 
 ![Swagger](/img/Swagger.png "Swagger")
 ![Entries](/img/Entries-Web.png "Entries")
-![Report](/img/Report-Web.png "Report")
+![Report](/img/Report-web.png "Report")
