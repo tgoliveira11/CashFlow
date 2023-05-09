@@ -1,3 +1,4 @@
+using CashFlow.Api.Middleware;
 using CashFlow.Domain.Repositories;
 using CashFlow.Domain.Services;
 using CashFlow.Infrastructure.DataAccess;
@@ -26,6 +27,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseMiddleware<ErrorHandlingMiddleware>();
 
 app.UseHttpsRedirection();
 
