@@ -93,9 +93,9 @@ namespace CashFlow.Web.Controllers
         }
 
         // GET: Report
-        public async Task<IActionResult> Report()
+        public async Task<IActionResult> Report(DateTime startDate)
         {
-            var report = await _cashFlowApiService.GetDailyBalanceReportAsync(DateTime.Now);
+            var report = await _cashFlowApiService.GetDailyBalanceReportAsync(startDate);
             return View(report);
         }
     }

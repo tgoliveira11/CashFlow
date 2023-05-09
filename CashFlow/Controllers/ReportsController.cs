@@ -23,7 +23,7 @@ namespace CashFlow.Api.Controllers
         {
             if (startDate > endDate)
             {
-                throw new ValidationException("Invalid date range. The start date cannot be greater than the end date.");
+                endDate = startDate;
             }
 
             return Ok(await _reportService.GenerateDailyBalanceReportAsync(startDate, endDate));

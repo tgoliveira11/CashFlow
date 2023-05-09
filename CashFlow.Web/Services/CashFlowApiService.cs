@@ -56,7 +56,7 @@ namespace CashFlow.Web.Services
         public async Task<ReportViewModel> GetDailyBalanceReportAsync(DateTime date)
         
         {
-            var response = await _httpClient.GetAsync($"api/reports/dailybalance?date={date:yyyy-MM-dd}");
+            var response = await _httpClient.GetAsync($"api/reports/dailybalance?startDate={date:yyyy-MM-dd}");
             response.EnsureSuccessStatusCode();
 
             var content = await response.Content.ReadAsStringAsync();

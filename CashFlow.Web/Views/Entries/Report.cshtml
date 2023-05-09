@@ -4,12 +4,17 @@
     ViewData["Title"] = "Report";
 }
 
-<h1>@ViewData["Title"]</h1>
+<h1>Daily Balance Report</h1>
 
-<p>
-    Start Date: @Model.StartDate.ToShortDateString() <br>
-    End Date: @Model.EndDate.ToShortDateString()
-</p>
+<form asp-controller="Entries" asp-action="Report" method="get" class="form-inline">
+    <div class="form-group">
+        <label for="startDate" class="mr-2">Start Date:</label>
+        <input type="date" id="startDate" name="startDate" asp-for="StartDate" class="form-control mr-3">
+    </div>
+    <button type="submit" class="btn btn-primary">Filter</button>
+</form>
+
+<hr />
 
 <table class="table">
     <thead>
@@ -21,16 +26,14 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model.DailyBalances)
+        @foreach (var dailyBalance in Model.DailyBalances)
         {
             <tr>
-                <td>@item.Date.ToShortDateString()</td>
-                <td>@item.TotalDebits.ToString("C")</td>
-                <td>@item.TotalCredits.ToString("C")</td>
-                <td>@item.NetBalance.ToString("C")</td>
+                <td>@dailyBalance.Date.ToShortDateString()</td>
+                <td>@dailyBalance.TotalDebits.ToString("C")</td>
+                <td>@dailyBalance.TotalCredits.ToString("C")</td>
+                <td>@dailyBalance.NetBalance.ToString("C")</td>
             </tr>
         }
     </tbody>
 </table>
-
-<a asp-action="Index" class="btn btn-primary">Back to Entries</a>
