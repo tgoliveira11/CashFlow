@@ -9,6 +9,6 @@ namespace CashFlow.Domain.Services
 {
     public interface IReportService
     {
-        Task<Report> GenerateDailyBalanceReportAsync(DateTime startDate, DateTime endDate);
+        Task<Report> GenerateReportAsync(DateTime startDate, DateTime endDate);
     }
 }

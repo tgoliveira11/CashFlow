@@ -26,7 +26,12 @@ namespace CashFlow.Api.Controllers
                 endDate = startDate;
             }
 
-            return Ok(await _reportService.GenerateDailyBalanceReportAsync(startDate, endDate));
+            if (startDate == DateTime.MinValue || endDate == DateTime.MinValue)
+            {
+                throw new ValidationException("Start date and end date are required.");
+            }
+
+            return Ok(await _reportService.GenerateReportAsync(startDate, endDate));
         }
     }
 }

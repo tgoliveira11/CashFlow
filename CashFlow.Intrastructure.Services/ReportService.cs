@@ -19,12 +19,9 @@ namespace CashFlow.Intrastructure.Services
             _entryRepository = entryRepository;
         }
 
-        public async Task<Report> GenerateDailyBalanceReportAsync(DateTime startDate, DateTime endDate)
+        public async Task<Report> GenerateReportAsync(DateTime startDate, DateTime endDate)
         {
-            if (startDate.Equals(DateTime.MinValue)) startDate = DateTime.Now;
-            if (endDate.Equals(DateTime.MinValue)) endDate = DateTime.Now;
-
-            var entries = await _entryRepository.GetAllEntriesAsync();
+            var entries = await _entryRepository.GetByDateRangeAsync(startDate, endDate);
             var dailyBalances = new List<DailyBalance>();
 
             for (var date = startDate; date <= endDate; date = date.AddDays(1))
@@ -43,4 +40,5 @@ namespace CashFlow.Intrastructure.Services
             return new Report(startDate, endDate, dailyBalances);
         }
     }
+
 }

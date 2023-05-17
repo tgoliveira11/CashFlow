@@ -15,10 +15,20 @@ namespace CashFlow.Domain.Entities
 
         public DailyBalance(DateTime date, decimal totalDebits, decimal totalCredits)
         {
+            if (totalDebits < 0)
+                throw new ArgumentException("Total debits should be greater than or equal to zero", nameof(totalDebits));
+
+            if (totalCredits < 0)
+                throw new ArgumentException("Total credits should be greater than or equal to zero", nameof(totalCredits));
+
+            if (date > DateTime.UtcNow)
+                throw new ArgumentException("Date cannot be a future date", nameof(date));
+
             Date = date;
             TotalDebits = totalDebits;
             TotalCredits = totalCredits;
             NetBalance = totalCredits - totalDebits;
         }
     }
+
 }

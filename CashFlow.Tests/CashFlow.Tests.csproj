@@ -27,6 +27,7 @@
     <ProjectReference Include="..\CashFlow.Domain\CashFlow.Domain.csproj" />
     <ProjectReference Include="..\CashFlow.Infrastructure.DataAccess\CashFlow.Infrastructure.DataAccess.csproj" />
     <ProjectReference Include="..\CashFlow.Intrastructure.Services\CashFlow.Intrastructure.Services.csproj" />
+    <ProjectReference Include="..\CashFlow\CashFlow.Api.csproj" />
   </ItemGroup>
 
 </Project>

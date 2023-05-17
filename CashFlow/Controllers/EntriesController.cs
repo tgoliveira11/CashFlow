@@ -23,7 +23,7 @@ namespace CashFlow.Api.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Entry>>> GetAllEntries()
         {
-            return Ok(await _entryRepository.GetAllEntriesAsync());
+            return Ok(await _entryRepository.GetAllAsync());
         }
 
         [HttpGet("error")]
@@ -35,7 +35,7 @@ namespace CashFlow.Api.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Entry>> GetEntryById(Guid id)
         {
-            var entry = await _entryRepository.GetEntryByIdAsync(id);
+            var entry = await _entryRepository.GetByIdAsync(id);
             return entry == null ? throw new EntryNotFoundException($"Entry with ID '{id}' not found.") : (ActionResult<Entry>)Ok(entry);
         }
 
@@ -47,14 +47,7 @@ namespace CashFlow.Api.Controllers
                 throw new ValidationException("Invalid entry data.");
             }
 
-            // Check for duplicate entries
-            var existingEntry = await _entryRepository.GetEntryByIdAsync(entry.Id);
-            if (existingEntry != null)
-            {
-                throw new DuplicateEntryException("An entry with the same ID already exists.");
-            }
-
-            await _entryRepository.AddEntryAsync(entry);
+            await _entryRepository.AddAsync(entry);
             return CreatedAtAction(nameof(GetEntryById), new { id = entry.Id }, entry);
         }
 
@@ -72,9 +65,9 @@ namespace CashFlow.Api.Controllers
             }
 
             //validate if entry already exists on database 
-            _ = await _entryRepository.GetEntryByIdAsync(entry.Id) ?? throw new EntryNotFoundException($"Entry with ID '{id}' not found.");
+            _ = await _entryRepository.GetByIdAsync(entry.Id) ?? throw new EntryNotFoundException($"Entry with ID '{id}' not found.");
 
-            await _entryRepository.UpdateEntryAsync(entry);
+            await _entryRepository.UpdateAsync(entry);
             return NoContent();
         }
 
@@ -82,9 +75,9 @@ namespace CashFlow.Api.Controllers
         public async Task<ActionResult> DeleteEntry(Guid id)
         {
             //validate if entry already exists on database 
-            _ = await _entryRepository.GetEntryByIdAsync(id) ?? throw new EntryNotFoundException($"Entry with ID '{id}' not found.");
+            _ = await _entryRepository.GetByIdAsync(id) ?? throw new EntryNotFoundException($"Entry with ID '{id}' not found.");
 
-            await _entryRepository.DeleteEntryAsync(id);
+            await _entryRepository.DeleteAsync(id);
             return NoContent();
         }
     }

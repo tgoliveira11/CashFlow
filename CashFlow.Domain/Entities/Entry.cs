@@ -8,11 +8,23 @@ namespace CashFlow.Domain.Entities
 {
     public class Entry
     {
-        public Guid Id { get; set; }
-        public DateTime Date { get; set; }
-        public decimal Amount { get; set; }
-        public EntryType Type { get; set; }
+        public Guid Id { get; }
+        public DateTime Date { get; }
+        public decimal Amount { get; }
+        public EntryType Type { get; }
         public string? Description { get; set; }
+
+        public Entry(Guid id, DateTime date, decimal amount, EntryType type, string? description = null)
+        {
+            if (amount <= 0)
+                throw new ArgumentException("Amount should be greater than zero", nameof(amount));
+
+            Id = id;
+            Date = date;
+            Amount = amount;
+            Type = type;
+            Description = description;
+        }
 
         public enum EntryType
         {

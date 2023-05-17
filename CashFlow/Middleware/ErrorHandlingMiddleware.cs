@@ -31,19 +31,37 @@ namespace CashFlow.Api.Middleware
         private static Task HandleExceptionAsync(HttpContext context, Exception ex)
         {
             HttpStatusCode statusCode = HttpStatusCode.InternalServerError;
+            string errorMessage = "An error occurred while processing the request.";
 
-            if (ex is ApiException apiEx)
+            if (ex is ApiException apiException)
             {
-                statusCode = apiEx.StatusCode;
+                statusCode = apiException.StatusCode;
+                errorMessage = apiException.Message;
             }
 
-            string result = JsonConvert.SerializeObject(new { error = ex.Message });
+            // Log the exception here if desired
+
+            var errorResponse = new ErrorResponse
+            {
+                StatusCode = (int)statusCode,
+                Message = errorMessage,
+                ExceptionType = ex.GetType().Name,
+                StackTrace = ex.StackTrace
+            };
+
+            string result = JsonConvert.SerializeObject(errorResponse);
             context.Response.ContentType = "application/json";
             context.Response.StatusCode = (int)statusCode;
 
             return context.Response.WriteAsync(result);
         }
+    }
 
-
+    public class ErrorResponse
+    {
+        public int StatusCode { get; set; }
+        public string Message { get; set; }
+        public string ExceptionType { get; set; }
+        public string StackTrace { get; set; }
     }
 }

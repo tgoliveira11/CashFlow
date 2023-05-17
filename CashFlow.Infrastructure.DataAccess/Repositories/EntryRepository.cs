@@ -18,29 +18,29 @@ namespace CashFlow.Infrastructure.DataAccess.Repositories
             _dbContext = dbContext;
         }
 
-        public async Task<IEnumerable<Entry>> GetAllEntriesAsync()
+        public async Task<IEnumerable<Entry>> GetAllAsync()
         {
             return await _dbContext.Entries.ToListAsync();
         }
 
-        public async Task<Entry> GetEntryByIdAsync(Guid id)
+        public async Task<Entry> GetByIdAsync(Guid id)
         {
             return await _dbContext.Entries.FindAsync(id);
         }
 
-        public async Task AddEntryAsync(Entry entry)
+        public async Task AddAsync(Entry entry)
         {
             await _dbContext.Entries.AddAsync(entry);
             await _dbContext.SaveChangesAsync();
         }
 
-        public async Task UpdateEntryAsync(Entry entry)
+        public async Task UpdateAsync(Entry entry)
         {
             _dbContext.Entry(entry).State = EntityState.Modified;
             await _dbContext.SaveChangesAsync();
         }
 
-        public async Task DeleteEntryAsync(Guid id)
+        public async Task DeleteAsync(Guid id)
         {
             var entry = await _dbContext.Entries.FindAsync(id);
             if (entry != null)
@@ -48,6 +48,45 @@ namespace CashFlow.Infrastructure.DataAccess.Repositories
                 _dbContext.Entries.Remove(entry);
                 await _dbContext.SaveChangesAsync();
             }
+        }
+
+        public async Task<IEnumerable<Entry>> GetByDateAsync(DateTime date)
+        {
+            return await _dbContext.Entries
+                .Where(e => e.Date.Date == date.Date)
+                .ToListAsync();
+        }
+
+        public async Task<IEnumerable<Entry>> GetByDateRangeAsync(DateTime startDate, DateTime endDate)
+        {
+            return await _dbContext.Entries
+            .Where(e => e.Date.Date >= startDate.Date && e.Date.Date <= endDate.Date)
+            .ToListAsync();
+        }
+
+        public async Task<IEnumerable<Entry>> GetByTypeAsync(Entry.EntryType type)
+        {
+            return await _dbContext.Entries
+            .Where(e => e.Type == type)
+            .ToListAsync();
+        }
+
+        public async Task ReplaceEntryAsync(Entry newEntry)
+        {
+            // Find the old entry.
+            var oldEntry = await _dbContext.Entries.FindAsync(newEntry.Id);
+
+            // If the old entry exists, remove it.
+            if (oldEntry != null)
+            {
+                _dbContext.Entries.Remove(oldEntry);
+            }
+
+            // Add the new entry.
+            await _dbContext.Entries.AddAsync(newEntry);
+
+            // Save the changes to the database.
+            await _dbContext.SaveChangesAsync();
         }
     }
 }
