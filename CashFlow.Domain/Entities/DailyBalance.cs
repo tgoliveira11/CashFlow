@@ -6,6 +6,11 @@ using System.Threading.Tasks;
 
 namespace CashFlow.Domain.Entities
 {
+    /// <summary>
+    /// Immutable Object:
+    /// Validation:
+    /// </summary>
+
     public class DailyBalance
     {
         public DateTime Date { get; }

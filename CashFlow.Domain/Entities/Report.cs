@@ -6,6 +6,12 @@ using System.Threading.Tasks;
 
 namespace CashFlow.Domain.Entities
 {
+    /// <summary>
+    /// Immutable Object:
+    /// Validation:
+    /// Encapsulation:
+    /// </summary>
+
     public class Report
     {
         public DateTime StartDate { get; }

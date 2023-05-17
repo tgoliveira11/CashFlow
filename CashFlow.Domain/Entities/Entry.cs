@@ -6,6 +6,13 @@ using System.Threading.Tasks;
 
 namespace CashFlow.Domain.Entities
 {
+    /// <summary>
+    /// Encapsulation: In DDD, we should encapsulate the domain logic inside the domain entities.
+    /// Immutable Object:
+    /// Validation:
+    /// </summary>
+
+
     public class Entry
     {
         public Guid Id { get; }
