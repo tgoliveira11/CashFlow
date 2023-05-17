@@ -16,7 +16,13 @@ The project is organized into the following components:
 ## Prerequisites
 
 - .NET Core 6.0 SDK
-- SQL Server (or another supported database system)
+- Microsoft.EntityFramework.Core.Design 6.0.16
+- Microsoft.EntityFramework.Core.SqlServer 6.0.16
+- Microsoft.EntityFramework.Core.InMemory 6.0.16
+- Newtonsoft.Json 9.0.1
+- Swashbuckle.AspNetCore 6.2.3
+- Moq 4.18.4
+- SQL Server
 
 ## Architectural Diagram
 
